@@ -24,13 +24,10 @@ const getComputerChoice = () => {
   switch (chooseRandom) {
     case 1:
       return 'rock'
-      break
     case 2:
       return 'paper'
-      break
     case 3:
       return 'scissors'
-      break
   }
 }
 
@@ -62,8 +59,8 @@ const game = () => {
 
   const returnMessage = `The Computer won ${computerScore} rounds and you won ${playerScore} rounds.`
 
-  if(playerScore > computerScore) return `${returnMessage} You win!`
-  else if(playerScore > computerScore) return `${returnMessage} You lost!`
+  if (playerScore > computerScore) return `${returnMessage} You win!`
+  else if (playerScore > computerScore) return `${returnMessage} You lost!`
   else return `${returnMessage}. The game is Tied!`
 }
 
