@@ -22,10 +22,12 @@ const playRound = (computerChoice, playerSelection) => {
   } else return 'You Won'
 }
 
-const playAgain = () => {
-  document.querySelector('.playerScore').textContent = 0
-  document.querySelector('.computerScore').textContent = 0
-  game()
+const getResults = (computerScore, playerScore) => {
+  const returnMessage = `The Computer won ${computerScore} rounds and you won ${playerScore} rounds.`
+
+  if (playerScore > computerScore) return `${returnMessage} You win!`
+  else if (playerScore > computerScore) return `${returnMessage} You lost!`
+  else return `${returnMessage}. The game is Tied!`
 }
 
 const game = () => {
@@ -38,25 +40,11 @@ const game = () => {
   const playAgainBtn = document.querySelector('.play-again-button')
   const results = document.querySelector('.results')
 
-  results.innerHTML = ''
-  finalScore.textContent = ''
 
-  const getResults = () => {
-    const returnMessage = `The Computer won ${computerScore} rounds and you won ${playerScore} rounds.`
-
-    if (playerScore > computerScore) return `${returnMessage} You win!`
-    else if (playerScore > computerScore) return `${returnMessage} You lost!`
-    else return `${returnMessage}. The game is Tied!`
-  }
-
-  console.log('hi')
   playerChoice.forEach((c) =>
     c.addEventListener('click', (e) => {
       if (rounds === 5) {
-        console.log('clicked')
-        c.disabled = true
-        const finalResults = getResults()
-        finalScore.textContent = finalResults
+        finalScore.textContent = getResults(computerScore, playerScore)
         playAgainBtn.style.display = 'block'
         playAgainBtn.addEventListener('click', () => {
           document.querySelector('.playerScore').textContent = 0
@@ -67,7 +55,6 @@ const game = () => {
           playerScore = 0
           computerScore = 0
           rounds = 0
-          c.disabled = false
         })
       } else {
         const computerChoice = getComputerChoice()
